@@ -17,8 +17,6 @@ const sidebar = () => {
                 <p className='text-gray-400 mt'>Main Menu</p>
                 <a href="">Dashboard</a>
                 <a href="">Tasks</a>
-                <a href="">Inbox</a>
-                <a href="">Calendar</a>
                 <a href="">Projects</a>
 
                 <p className='text-gray-400 mt-4'>HR Management</p>
@@ -27,13 +25,10 @@ const sidebar = () => {
                 <a href="">Payroll</a>
                 <a href="">Hiring</a>
 
-                <p className='text-gray-400 mt-4'>Analytics & Reports</p>
-                <a href="">Settings</a>
-                <a href="">Help</a>
             </div>
 
             {/* logout */}
-            <button className='mt-auto text-red-500'>Logout</button>
+            <button className='mt-auto text-red-500'>Login</button>
         </section>
     
     </>
