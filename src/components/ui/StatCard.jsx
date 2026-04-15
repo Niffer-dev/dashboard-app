@@ -1,13 +1,5 @@
 import React from 'react'
-// import { useState } from 'react'
-// import axios from 'axios'
 
-// const initialStatData = {
-//     totalEmployees: 0,
-//     jobApplicants: 0,
-//     revenue: 0,
-//     attendance: 0
-// }
 
 const StatCard = ({ title, value, }) => {
   return (
