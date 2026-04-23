@@ -2,7 +2,6 @@ import React from 'react'
 import WelcomeHeader from "../components/dashboard/WelcomeHeader"
 import StatsGrid from '../components/Dashboard/StatsGrid'
 import AttendanceChart from '../components/dashboard/AttendanceChart'
-import TasksSection from '../components/dashboard/TasksSection'
 
 const Dashboard = () => {
   return (
@@ -13,8 +12,6 @@ const Dashboard = () => {
           <StatsGrid/>
           <AttendanceChart />
       </div>
-
-      <TasksSection />
     </div>
   )
 }

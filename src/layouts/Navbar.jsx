@@ -1,12 +1,13 @@
 import React from 'react'
+import DarkModeToggle from '../components/ui/DarkModeToggle'
+import { Bell } from 'lucide-react'
 
-const Navbar = () => {
+const Navbar = ({darkMode, onToggle}) => {
   return (
-    <>
-        <div className='bg-white p-4 justify-between items-center'>
-            <input type="text" placeholder='Search...' className='border rounded-lg px-3 py-2 w-1/3' />
-        </div>
-    </>
+    <nav className="flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <Bell className="w-5 h-5 text-gray-500 cursor-pointer"/>
+        <DarkModeToggle darkMode={darkMode} onToggle={onToggle}/>
+    </nav>
   )
 }
 
