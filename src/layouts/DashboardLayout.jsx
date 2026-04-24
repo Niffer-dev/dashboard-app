@@ -3,13 +3,13 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
 
-const DashboardLayout = () => {
+const DashboardLayout = ({darkMode, onToggle}) => {
   return (
-    <div className='flex h-screen bg-gray-100'>
+    <div className='flex h-screen bg-gray-100 dark:bg-gray-900'>
         <Sidebar/>
 
         <div className='flex-1 flex flex-col'>
-            <Navbar/>
+            <Navbar darkMode={darkMode} onToggle={onToggle}/>
 
             <main className='p-6 overflow-y-auto'>
                 <Outlet/>
