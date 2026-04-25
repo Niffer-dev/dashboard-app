@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const StatCard = ({ title, value, }) => {
   return (
     <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur p-4 rounded-xl shadow-md dark:shadow-black/40 w-full border border-gray-100 dark:border-gray-700 transition-colors ">
