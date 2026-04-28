@@ -1,18 +1,44 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-const data = [
-  { name: "Sun", present: 40, absent: 24 },
-  { name: "Mon", present: 30, absent: 13 },
-  { name: "Tue", present: 50, absent: 20 },
-  { name: "Wed", present: 47, absent: 18 },
-  { name: "Thu", present: 60, absent: 25 },
-  { name: "Fri", present: 55, absent: 22 },
-  { name: "Sat", present: 65, absent: 30 },
+const initialData = [
+  { name: "Sun", present: 1, absent: 4 },
+  { name: "Mon", present: 1, absent: 4 },
+  { name: "Tue", present: 1, absent: 4 },
+  { name: "Wed", present: 1, absent: 4 },
+  { name: "Thu", present: 1, absent: 4 },
+  { name: "Fri", present: 1, absent: 4 },
+  { name: "Sat", present: 1, absent: 4 },
 ];
 
 const AttendanceChart = () => {
+  const [data, setData] = useState(initialData);
+  const [view, setView] = useState("weekly"); // track active tab
+
+  useEffect(() => {
+    const fetchAttendance = async (type) => {
+      try {
+        const res = await axios.get(
+          `http://localhost:4200/api/attendance?type=${type}`,
+          {
+            withCredentials: true, // include cookies for authentication
+          },
+        );
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setData(res.data);
+        } else {
+          setData(initialData);
+        }
+      } catch (err) {
+        console.error("Error fetching attendance data:", err);
+        setData(initialData);
+      }
+    };
+
+    fetchAttendance(view);
+  }, [view]);
+
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm w-1/2">
       {/* Header */}
@@ -21,9 +47,30 @@ const AttendanceChart = () => {
 
         {/* Tabs */}
         <div className="flex gap-2 text-sm">
-          <button className="px-3 py-1 bg-blue-500 text-white rounded-md">Weekly</button>
-          <button className="px-3 py-1 text-gray-500">Daily</button>
-          <button className="px-3 py-1 text-gray-500">Monthly</button>
+          <button
+            onClick={() => setView("weekly")}
+            className={`px-3 py-1 rounded-md ${
+              view === "weekly" ? "bg-blue-500 text-white" : "text-gray-500"
+            }`}
+          >
+            Weekly
+          </button>
+          <button
+            onClick={() => setView("daily")}
+            className={`px-3 py-1 rounded-md ${
+              view === "daily" ? "bg-blue-500 text-white" : "text-gray-500"
+            }`}
+          >
+            Daily
+          </button>
+          <button
+            onClick={() => setView("monthly")}
+            className={`px-3 py-1 rounded-md ${
+              view === "monthly" ? "bg-blue-500 text-white" : "text-gray-500"
+            }`}
+          >
+            Monthly
+          </button>
         </div>
       </div>
 
@@ -33,19 +80,17 @@ const AttendanceChart = () => {
           <LineChart data={data}>
             <XAxis dataKey="name" stroke="#9CA3AF" />
             <Tooltip />
-
             <Line
               type="monotone"
               dataKey="present"
-              stroke="#3B82F6" // blue
+              stroke="#3B82F6"
               strokeWidth={3}
               dot={false}
             />
-
             <Line
               type="monotone"
               dataKey="absent"
-              stroke="#8B5CF6" // purple
+              stroke="#8B5CF6"
               strokeWidth={3}
               dot={false}
             />
