@@ -1,6 +1,6 @@
 // pages/Login.jsx
 import { useState } from "react";
-import loginBg from "../../assets/undraw_online-community_3o0l.svg";
+import loginBg from "../../assets/loginUI.svg";
 import Input from "../../components/ui/Input";
 import { Link } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="bg-gray-50 h-full w-full p-5 lg:p-10 flex flex-col gap-5 items-start lg:justify-center">
+      <div className="bg-gray-50 h-full w-full p-5 lg:p-8 flex flex-col gap-5 items-start lg:justify-center">
         <div className="mb-5">
           <h1 className="lg:text-3xl md:text-2xl text-lg font-bold">
             Welcome Back

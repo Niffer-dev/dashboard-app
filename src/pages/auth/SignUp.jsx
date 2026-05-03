@@ -1,6 +1,6 @@
 // pages/SignUp.jsx
 import { useState } from "react";
-import loginBg from "../../assets/undraw_online-community_3o0l.svg";
+import signupBg from "../../assets/signupUI.svg";
 import Input from "../../components/ui/Input";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -44,7 +44,7 @@ const SignUp = () => {
     <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md">
       <div className="bg-white">
         <div className="w-full h-fit lg:w-100 lg:h-100 flex items-center justify-center"> 
-          <img src={loginBg} alt="image" />
+          <img src={signupBg} alt="image" />
         </div>
       </div>
 
@@ -73,7 +73,7 @@ const SignUp = () => {
             type="text"
             value={formData.username}
             onChange={handleChange}
-            placeholder="Enter your email"
+            placeholder="Enter your username"
           />
 
           <Input
@@ -81,7 +81,7 @@ const SignUp = () => {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Enter your password"
+            placeholder="Enter your email"
           />
           <Input
             label="Password"
@@ -92,7 +92,7 @@ const SignUp = () => {
           />
 
           <button className="py-2 px-4 rounded-md bg-purple-800 text-white">
-            Login
+            Sign up
           </button>
         </form>
         <small>
