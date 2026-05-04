@@ -2,7 +2,9 @@ import React from 'react'
 
 const Employees = () => {
   return (
-    <div>Employees</div>
+    <div className='dark:text-gray-300'>
+      <h2>Employees</h2>
+    </div>
   )
 }
 

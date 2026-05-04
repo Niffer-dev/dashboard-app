@@ -7,6 +7,38 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: ""});
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { email: "", password: "" };
+
+    if (!email) {
+      newErrors.email = "Email is required";
+      valid = false; 
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Enter a valid email address";
+      valid = false;
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required";
+      valid = false;
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 7 characters";
+      valid = false
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      alert("Form submitted:", { email, password })
+    }
+  }
 
   return (
     <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md">
@@ -36,7 +68,7 @@ const Login = () => {
           </button>
         </div>
 
-        <form className="w-full lg:w-full  flex flex-col gap-3">
+        <form className="w-full lg:w-full  flex flex-col gap-3" onSubmit={handleSubmit}>
           <Input
             label="Email"
             type="email"
@@ -45,6 +77,9 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email}</p>
+          )}
 
           <Input
             label="Password"
@@ -53,13 +88,16 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.password}</p>
+          )}
 
-          <button className="py-2 px-4 rounded-md bg-purple-800 text-white">
+          <button type="submit" className="py-2 px-4 rounded-md bg-purple-800 text-white cursor-pointer">
             Login
           </button>
         </form>
         <small>
-          I don't have an account? <Link to={"/sign-up"}>Sign up</Link>
+          I don't have an account? <Link to={"/sign-up"} className="text-red-500 hover:text-red-600">Sign up</Link>
         </small>
       </div>
     </div>

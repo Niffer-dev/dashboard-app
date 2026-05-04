@@ -91,12 +91,12 @@ const SignUp = () => {
             placeholder="Enter your password"
           />
 
-          <button className="py-2 px-4 rounded-md bg-purple-800 text-white">
+          <button className="py-2 px-4 rounded-md bg-purple-800 text-white cursor-pointer">
             Sign up
           </button>
         </form>
         <small>
-          I have an account? <Link to={"/login"}>Login</Link>
+          I have an account? <Link to={"/login"} className="text-red-500 hover:text-red-600">Login</Link>
         </small>
       </div>
     </div>

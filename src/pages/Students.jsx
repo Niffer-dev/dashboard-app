@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Hiring = () => {
+const Students = () => {
   return (
     <div className='dark:text-gray-300'>
-      <h2>Hiring</h2>
+      <h2>Students</h2>
     </div>
   )
 }
 
-export default Hiring
+export default Students

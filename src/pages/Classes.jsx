@@ -2,7 +2,7 @@ import React from 'react'
 
 import TaskTable from "../components/dashboard/TaskTable";
 
-const Tasks = () => {
+const Classes = () => {
   const present = [
     { id: "CIV-012001",
       avatar: "https://i.pravatar.cc/40?img=1", 
@@ -102,4 +102,4 @@ const Tasks = () => {
   );
 };
 
-export default Tasks;
+export default Classes;
