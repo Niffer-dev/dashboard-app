@@ -3,42 +3,53 @@ import { useState } from "react";
 import loginBg from "../../assets/loginUI.svg";
 import Input from "../../components/ui/Input";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({ email: "", password: ""});
+  const navigate = useNavigate();
 
-  const validateForm = () => {
-    let valid = true;
-    const newErrors = { email: "", password: "" };
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
 
-    if (!email) {
-      newErrors.email = "Email is required";
-      valid = false; 
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Enter a valid email address";
-      valid = false;
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setForm({...form, [e.target.name]: e.target.value})
+  }
+
+  const validate = () => {
+    let newErrors = {};
+
+    //email validation
+    if(!form.email) {
+      newErrors.email = "Email is required"
+    } else if (!/\S+@\S+\.\S+/.test(form.email)){
+      newErrors.email = "Invalide email address"
     }
 
-    if (!password) {
-      newErrors.password = "Password is required";
-      valid = false;
-    } else if (password.length < 6) {
-      newErrors.password = "Password must be at least 7 characters";
-      valid = false
+    if (!form.password) {
+      newErrors.password = "Password is required"
+    } else if (form.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters"
     }
 
-    setErrors(newErrors);
-    return valid;
+    return newErrors;
   };
 
+  // submit handler
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      alert("Form submitted:", { email, password })
+    
+    const validationErrors = validate();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      navigate("/", { replace: true });
     }
   }
+
 
   return (
     <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md">
@@ -72,27 +83,28 @@ const Login = () => {
           <Input
             label="Email"
             type="email"
-            s
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={form.email}
+            onChange={handleChange}
             placeholder="Enter your email"
           />
           {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email}</p>
+            <p className="text-red-500 text-xs mt-1">{errors.email}</p>
           )}
 
           <Input
             label="Password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={form.password}
+            onChange={handleChange}
             placeholder="Enter your password"
           />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.password}</p>
+          {errors.password && (
+            <p className="text-red-500 text-xs mt-1">{errors.password}</p>
           )}
 
-          <button type="submit" className="py-2 px-4 rounded-md bg-purple-800 text-white cursor-pointer">
+          <button type="submit" className="py-2 px-4 rounded-md bg-purple-800 text-white cursor-pointer" >
             Login
           </button>
         </form>
