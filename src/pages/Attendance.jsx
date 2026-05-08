@@ -2,7 +2,9 @@ import React from 'react'
 
 const Attendance = () => {
   return (
-    <div>Attendance</div>
+    <div className='dark:text-gray-300'>
+      <h2>Attendance</h2>
+    </div>
   )
 }
 

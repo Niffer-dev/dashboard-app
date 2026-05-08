@@ -30,7 +30,7 @@ const StatsGrid = () => {
     <div className="grid grid-cols-2 gap-5 w-1/2">
       <StatCard title="Total Employees" value={stats.totalEmployees} />
       <StatCard title="Job Applicants" value={stats.jobApplicants} />
-      <StatCard title="Revenue" value={`$${stats.revenue}`} />
+      <StatCard title="Revenue" value={`${stats.revenue}`} />
       <StatCard title="Attendance" value={`${stats.attendance}%`} />
     </div>
   );
