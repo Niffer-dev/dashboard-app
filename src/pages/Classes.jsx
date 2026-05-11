@@ -302,7 +302,7 @@ const Classes = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4200/api/classes")
+      .get("https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/classes")
       .then((response) => {
         if (response.data && response.data.data) {
           const allTasks = response.data.data;
