@@ -4,6 +4,8 @@ import loginBg from "../../assets/loginUI.svg";
 import Input from "../../components/ui/Input";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -46,25 +48,30 @@ const Login = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      navigate("/", { replace: true });
+
+      toast.success("Login successful!");
+
+      setTimeout(()=>{
+        navigate("/", { replace: true });
+      }, 1500);
     }
   }
 
 
   return (
-    <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md">
-      <div className="bg-white">
+    <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <div className="bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="w-full h-fit lg:w-100 lg:h-100 flex items-center justify-center"> 
           <img src={loginBg} alt="image" />
         </div>
       </div>
 
-      <div className="bg-gray-50 h-full w-full p-5 lg:p-8 flex flex-col gap-5 items-start lg:justify-center">
+      <div className="bg-gray-50 dark:bg-gray-800 h-full w-full p-5 lg:p-8 flex flex-col gap-5 items-start lg:justify-center transition-colors duration-300">
         <div className="mb-5">
-          <h1 className="lg:text-3xl md:text-2xl text-lg font-bold">
+          <h1 className="lg:text-3xl md:text-2xl text-lg font-bold text-gray-900 dark:text-white">
             Welcome Back
           </h1>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             Login and gain full access to thousands of eciting tutoring and
             mentorship opportunities.
           </p>
@@ -74,7 +81,7 @@ const Login = () => {
           <button className="text-sm py-1 px-4 rounded-sm bg-purple-800 text-white">
             I'm a teacher
           </button>
-          <button className="text-sm py-1 px-4 rounded-sm border-2 border-purple-700 text-purple-700 active:scale-95 transition cursor-pointer">
+          <button className="text-sm py-1 px-4 rounded-sm border-2 border-purple-700 text-purple-700 cursor-pointer dark:text-purple-300 active:scale-95 transition">
             I'm a student
           </button>
         </div>
@@ -108,7 +115,7 @@ const Login = () => {
             Login
           </button>
         </form>
-        <small>
+        <small className="text-gray-600 dark:text-gray-400">
           I don't have an account? <Link to={"/sign-up"} className="text-red-500 hover:text-red-600">Sign up</Link>
         </small>
       </div>
