@@ -32,9 +32,10 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4200/api/auth/register",
+        "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/auth/register",
+
         formData,
-        { withCredentials: true }
+        // { withCredentials: true },
       );
 
       if (response.status !== 201) {
@@ -64,7 +65,9 @@ const SignUp = () => {
           <h1 className="lg:text-3xl text-2xl font-bold">Create an Account</h1>
           <p className="text-sm text-gray-500">
             with{" "}
-            <span className="text-purple-700 font-semibold">Backend Project</span>
+            <span className="text-purple-700 font-semibold">
+              Backend Project
+            </span>
           </p>
         </div>
 

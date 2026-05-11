@@ -17,13 +17,14 @@ const AttendanceChart = () => {
   const [view, setView] = useState("weekly"); // track active tab
 
   useEffect(() => {
-    const fetchAttendance = async (type) => {
+    const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4200/api/attendance?type=${type}`,
-          {
-            withCredentials: true, // include cookies for authentication
-          },
+          // `http://localhost:4200/api/attendance?type=${type}`,
+          "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app",
+          // {
+          //   withCredentials: true, // include cookies for authentication
+          // },
         );
         if (Array.isArray(res.data) && res.data.length > 0) {
           setData(res.data);
@@ -36,8 +37,8 @@ const AttendanceChart = () => {
       }
     };
 
-    fetchAttendance(view);
-  }, [view]);
+    fetchAttendance();
+  }, []);
 
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm w-1/2">
