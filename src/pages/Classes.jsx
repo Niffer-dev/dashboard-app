@@ -5,91 +5,91 @@
 // const Classes = () => {
 //   const present = [
 //     { id: "CIV-012001",
-//       avatar: "https://i.pravatar.cc/40?img=1", 
-//       name: "Osas", 
-//       email: "osas@gmail.com", 
-//       date: "Apr 05 - Apr 10", 
-//       amount: "$1,000", 
-//       tax: "$40", 
+//       avatar: "https://i.pravatar.cc/40?img=1",
+//       name: "Osas",
+//       email: "osas@gmail.com",
+//       date: "Apr 05 - Apr 10",
+//       amount: "$1,000",
+//       tax: "$40",
 //       tags: ["bugs", "review"] },
 //     { id: "CIV-012002",
-//       avatar: "https://i.pravatar.cc/40?img=2", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=2",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["bugs", "review"] },
 //     { id: "CIV-012003",
-//       avatar: "https://i.pravatar.cc/40?img=3", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=3",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["bugs", "review"] },
 //     { id: "CIV-012004",
-//       avatar: "https://i.pravatar.cc/40?img=4", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=4",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["bugs", "review"] }
 //   ];
 
 //   const absent = [
 //     { id: "CIV-012005",
-//       avatar: "https://i.pravatar.cc/40?img=5", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=5",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["done"] },
 //     { id: "CIV-012006",
-//       avatar: "https://i.pravatar.cc/40?img=6", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=6",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["done"] },
 //     { id: "CIV-012007",
-//       avatar: "https://i.pravatar.cc/40?img=7", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=7",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["done"] }
-    
+
 //   ];
 
 //   const partialPaid = [
 //     { id: "CIV-012008",
-//       avatar: "https://i.pravatar.cc/40?img=8", 
-//       name: "Mary", 
-//       email: "mary@gmail.com", 
-//       date: "Apr 02 - Apr 06", 
-//       amount: "$1,500", 
-//       tax: "$50", 
+//       avatar: "https://i.pravatar.cc/40?img=8",
+//       name: "Mary",
+//       email: "mary@gmail.com",
+//       date: "Apr 02 - Apr 06",
+//       amount: "$1,500",
+//       tax: "$50",
 //       tags: ["pending", "branding"] },
 //     { id: "CIV-012009",
-//       avatar: "https://i.pravatar.cc/40?img=9", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=9",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["pending", "branding"] },
 //     { id: "CIV-0120010",
-//       avatar: "https://i.pravatar.cc/40?img=10", 
-//       name: "John", 
-//       email: "john@gmail.com", 
-//       date: "Apr 01 - Apr 03", 
-//       amount: "$2,000", 
-//       tax: "$60", 
+//       avatar: "https://i.pravatar.cc/40?img=10",
+//       name: "John",
+//       email: "john@gmail.com",
+//       date: "Apr 01 - Apr 03",
+//       amount: "$2,000",
+//       tax: "$60",
 //       tags: ["pending", "branding"] }
 //   ];
 
@@ -103,7 +103,6 @@
 // };
 
 // export default Classes;
-
 
 // import React from 'react'
 
@@ -267,52 +266,69 @@ import TaskTable from "../components/dashboard/TaskTable";
 
 const Classes = () => {
   const [tasks, setTasks] = useState({
-  present: [{
-      id: "CIV-012001",
-      avatar: "https://i.pravatar.cc/40?img=1",
-      name: "Osas",
-      email: "osas@gmail.com",
-      date: "Apr 05 - Apr 10",
-      amount: "$1,000",
-      tax: "$40",
-      tags: ["bugs", "review"],
-    },],
-  absent: [{
-      id: "CIV-012005",
-      avatar: "https://i.pravatar.cc/40?img=5",
-      name: "John",
-      email: "john@gmail.com",
-      date: "Apr 01 - Apr 03",
-      amount: "$2,000",
-      tax: "$60",
-      tags: ["done"],
-    },],
-  partialPaid: [{
-      id: "CIV-012008",
-      avatar: "https://i.pravatar.cc/40?img=8",
-      name: "Mary",
-      email: "mary@gmail.com",
-      date: "Apr 02 - Apr 06",
-      amount: "$1,500",
-      tax: "$50",
-      tags: ["pending", "branding"],
-    },]
-});
-
+    present: [
+      {
+        id: "CIV-012001",
+        avatar: "https://i.pravatar.cc/40?img=1",
+        name: "Osas",
+        email: "osas@gmail.com",
+        date: "Apr 05 - Apr 10",
+        amount: "$1,000",
+        tax: "$40",
+        tags: ["bugs", "review"],
+      },
+    ],
+    absent: [
+      {
+        id: "CIV-012005",
+        avatar: "https://i.pravatar.cc/40?img=5",
+        name: "John",
+        email: "john@gmail.com",
+        date: "Apr 01 - Apr 03",
+        amount: "$2,000",
+        tax: "$60",
+        tags: ["done"],
+      },
+    ],
+    partialPaid: [
+      {
+        id: "CIV-012008",
+        avatar: "https://i.pravatar.cc/40?img=8",
+        name: "Mary",
+        email: "mary@gmail.com",
+        date: "Apr 02 - Apr 06",
+        amount: "$1,500",
+        tax: "$50",
+        tags: ["pending", "branding"],
+      },
+    ],
+  });
 
   useEffect(() => {
     axios
-      .get("https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/classes")
+      .get(
+        "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/classes",
+      )
       .then((response) => {
         if (response.data && response.data.data) {
           const allTasks = response.data.data;
           setTasks({
-            present: allTasks.filter((t) => t.tags.includes("review")),
-            absent: allTasks.filter((t) => t.tags.includes("done")),
-            partialPaid: allTasks.filter((t) => t.tags.includes("pending")),
+            present: allTasks.filter((t) => t.status === "present"),
+            absent: allTasks.filter((t) => t.status === "absent"),
+            partialPaid: allTasks.filter((t) => t.status === "partialPaid"),
           });
         }
       })
+      // .then((response) => {
+      //   if (response.data && response.data.data) {
+      //     const allTasks = response.data.data;
+      //     setTasks({
+      //       present: allTasks.filter((t) => t.tags.includes("review")),
+      //       absent: allTasks.filter((t) => t.tags.includes("done")),
+      //       partialPaid: allTasks.filter((t) => t.tags.includes("pending")),
+      //     });
+      //   }
+      // })
       // .then((response) => {
       //   if (response.data) {
       //     // Expecting response like { present: [...], absent: [...], partialPaid: [...] }
