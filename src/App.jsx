@@ -44,8 +44,6 @@
 
 // export default App;
 
-
-
 // // import { useState } from 'react'
 // import "./App.css";
 // import { Route, Routes, Navigate } from "react-router-dom";
@@ -111,8 +109,6 @@
 
 // export default App;
 
-
-
 import { useState, useEffect } from "react";
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -128,12 +124,13 @@ import Hiring from "./pages/Hiring";
 import { useDarkMode } from "./hooks/useDarkMode";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
+import Logout from "./pages/auth/Logout";
 import { Toaster } from "react-hot-toast";
 
 // Hook to reactively track authentication status
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token")
+    !!localStorage.getItem("token"),
   );
 
   useEffect(() => {
@@ -193,7 +190,7 @@ function App() {
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
-
+        <Route path="/logout" element={<Logout />} />
         {/* Catch-all redirect */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
