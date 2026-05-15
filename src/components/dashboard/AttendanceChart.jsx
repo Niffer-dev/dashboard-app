@@ -20,7 +20,7 @@ const AttendanceChart = () => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance?type=${type}`,
+          `https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance?type=${view}`,
           // "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance",
           // {
           //   withCredentials: true, // include cookies for authentication
@@ -38,7 +38,7 @@ const AttendanceChart = () => {
     };
 
     fetchAttendance();
-  }, []);
+  }, [view]);
 
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm w-1/2">
