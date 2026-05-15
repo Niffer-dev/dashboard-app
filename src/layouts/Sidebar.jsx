@@ -14,7 +14,7 @@ const Sidebar = () => {
             </div>
 
             {/* menu */}
-            <div className="flex flex-col gap-4 text-sm">
+            <div className="flex flex-col gap-4 text-sm flex-1">
                 <p className='text-gray-400 dark:text-gray-500 mt'>Main Menu</p>
                 <NavLink to="/dashboard" className={({ isActive }) => isActive ? "text-blue-500 font-semibold" : "text-gray-600 dark:text-gray-400"}>Dashboard</NavLink>
                 <NavLink to="/students" className={({ isActive }) => isActive ? "text-blue-500 font-semibold" : "text-gray-600 dark:text-gray-400"}>Students</NavLink>
@@ -30,8 +30,7 @@ const Sidebar = () => {
 
             {/* logout */}
             <div className='flex gap-2.5 pt-6'>
-                <Link to="/sign-up" className='mt-auto text-red-500 dark:text-red-400'>Sign Up</Link>
-                <Link to="/login" className='mt-auto text-red-500 dark:text-red-400'>Login</Link>
+                <Link to="/logout" className='mt-auto text-red-500 dark:text-red-400'>Logout</Link>
             </div>
         </section>
     
