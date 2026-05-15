@@ -20,8 +20,8 @@ const AttendanceChart = () => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          // `http://localhost:4200/api/attendance?type=${type}`,
-          "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance",
+          `https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance?type=${type}`,
+          // "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance",
           // {
           //   withCredentials: true, // include cookies for authentication
           // },
