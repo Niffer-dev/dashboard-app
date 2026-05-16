@@ -1,11 +1,7 @@
-import React from 'react'
+import DeveloperMode from "../components/ui/DeveloperMode";
 
 const Payroll = () => {
-  return (
-    <div className='dark:text-gray-300'>
-      <h2>Payroll</h2>
-    </div>
-  )
-}
+  return <DeveloperMode title="Payroll" />;
+};
 
 export default Payroll

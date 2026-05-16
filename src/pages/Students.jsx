@@ -1,11 +1,7 @@
-import React from 'react'
+import DeveloperMode from "../components/ui/DeveloperMode";
 
 const Students = () => {
-  return (
-    <div className='dark:text-gray-300'>
-      <h2>Students</h2>
-    </div>
-  )
-}
+  return <DeveloperMode title="Students" />;
+};
 
 export default Students
