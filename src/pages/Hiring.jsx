@@ -1,11 +1,7 @@
-import React from 'react'
+import DeveloperMode from "../components/ui/DeveloperMode";
 
 const Hiring = () => {
-  return (
-    <div className='dark:text-gray-300'>
-      <h2>Hiring</h2>
-    </div>
-  )
-}
+  return <DeveloperMode title="Hiring" />;
+};
 
 export default Hiring
