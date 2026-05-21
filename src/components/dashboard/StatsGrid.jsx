@@ -12,10 +12,8 @@ const initialStatData = {
 const StatsGrid = () => {
   const [stats, setStats] = useState(initialStatData);
 
-  //option1
   useEffect(() => {
     axios
-      // .get("http://localhost:4200/api/stats")
       .get(`${import.meta.env.VITE_API_BASE_URL}/stats`)
       .then((response) => {
         if (response.data.length > 0) {

@@ -37,19 +37,6 @@ const Classes = () => {
             </div>
           </div>
 
-          {/* <ClassFormDialog
-            open={open}
-            setOpen={setOpen}
-            isEditing={isEditing}
-            formState={formState}
-            onChange={handleFormChange}
-            onSubmit={handleSaveClass}
-            trigger={
-              <Button onClick={openNewClass} className="bg-cyan-500 text-white px-4 py-2 rounded-lg">
-                + Create Class
-              </Button>
-            }
-          /> */}
           <ClassFormDialog
             open={open}
             setOpen={setOpen}
