@@ -32,10 +32,12 @@ const Classes = () => {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="font-semibold dark:text-white">Classes</h2>
-            <div className="text-sm text-gray-500 dark:text-gray-400">Manage classes, teachers and capacity</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              Manage classes, teachers and capacity
+            </div>
           </div>
 
-          <ClassFormDialog
+          {/* <ClassFormDialog
             open={open}
             setOpen={setOpen}
             isEditing={isEditing}
@@ -44,6 +46,22 @@ const Classes = () => {
             onSubmit={handleSaveClass}
             trigger={
               <Button onClick={openNewClass} className="bg-cyan-500 text-white px-4 py-2 rounded-lg">
+                + Create Class
+              </Button>
+            }
+          /> */}
+          <ClassFormDialog
+            open={open}
+            setOpen={setOpen}
+            isEditing={isEditing}
+            formState={formState}
+            onChange={handleFormChange}
+            onSubmit={handleSaveClass}
+            trigger={
+              <Button
+                onClick={openNewClass}
+                className="bg-cyan-500 text-white px-4 py-2 rounded-lg"
+              >
                 + Create Class
               </Button>
             }
@@ -59,7 +77,11 @@ const Classes = () => {
           setShowFullOnly={setShowFullOnly}
         />
 
-        <ClassesTable classes={filteredClasses} onEdit={openEditClass} onDelete={handleDeleteClass} />
+        <ClassesTable
+          classes={filteredClasses}
+          onEdit={openEditClass}
+          onDelete={handleDeleteClass}
+        />
       </div>
     </div>
   );

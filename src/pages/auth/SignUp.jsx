@@ -32,7 +32,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/auth/register",
+        `${import.meta.env.VITE_API_BASE_URL}/auth/register`,
 
         formData,
         // { withCredentials: true },

@@ -16,7 +16,7 @@ const StatsGrid = () => {
   useEffect(() => {
     axios
       // .get("http://localhost:4200/api/stats")
-      .get("https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/stats")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/stats`)
       .then((response) => {
         if (response.data.length > 0) {
           setStats(response.data[0]); // take the first stats document

@@ -12,7 +12,7 @@ const Logout = () => {
       try {
         // Call backend logout endpoint (adjust URL as needed)
         await axios.post(
-          "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/auth/logout",
+          `${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
           {},
           {
             withCredentials: true, // important for clearing httpOnly cookie

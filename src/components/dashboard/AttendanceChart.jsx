@@ -20,11 +20,7 @@ const AttendanceChart = () => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance?type=${view}`,
-          // "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/attendance",
-          // {
-          //   withCredentials: true, // include cookies for authentication
-          // },
+          `${import.meta.env.VITE_API_BASE_URL}/attendance?type=${view}`
         );
         if (Array.isArray(res.data) && res.data.length > 0) {
           setData(res.data);
@@ -49,20 +45,20 @@ const AttendanceChart = () => {
         {/* Tabs */}
         <div className="flex gap-2 text-sm">
           <button
-            onClick={() => setView("weekly")}
-            className={`px-3 py-1 rounded-md ${
-              view === "weekly" ? "bg-blue-500 text-white" : "text-gray-500"
-            }`}
-          >
-            Weekly
-          </button>
-          <button
             onClick={() => setView("daily")}
             className={`px-3 py-1 rounded-md ${
               view === "daily" ? "bg-blue-500 text-white" : "text-gray-500"
             }`}
           >
             Daily
+          </button>
+          <button
+            onClick={() => setView("weekly")}
+            className={`px-3 py-1 rounded-md ${
+              view === "weekly" ? "bg-blue-500 text-white" : "text-gray-500"
+            }`}
+          >
+            Weekly
           </button>
           <button
             onClick={() => setView("monthly")}

@@ -71,7 +71,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://backend-dashboard-ax8aqfqxe-kingsanbo-9753s-projects.vercel.app/api/auth/login",
+        `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
         {
           email: form.email,
           password: form.password,
