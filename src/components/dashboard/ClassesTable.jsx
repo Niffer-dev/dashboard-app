@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff, Pencil, Trash2 } from "lucide-react";
 
-const ClassesTable = ({ classes, onEdit, onDelete }) => {
+const ClassesTable = ({ classes = [], onEdit, onDelete }) => {
   const [hiddenRows, setHiddenRows] = useState({});
 
   const toggleRowVisibility = (rowId) => {
@@ -36,13 +36,10 @@ const ClassesTable = ({ classes, onEdit, onDelete }) => {
         <tbody>
           {classes.map((item) => {
             const percentage = (item.capacity / item.total) * 100;
-            const uniqueId = item._id; // Use MongoDB _id
+            const uniqueId = item._id;
 
             return (
-              <tr
-                key={uniqueId}
-                className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition"
-              >
+              <tr key={uniqueId} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                 <td className="py-4 text-sm dark:text-white">
                   {hiddenRows[uniqueId] ? "****" : item.name}
                 </td>
@@ -73,21 +70,14 @@ const ClassesTable = ({ classes, onEdit, onDelete }) => {
                 </td>
                 <td className="py-4 text-sm dark:text-white">
                   {Number(item.capacity) >= Number(item.total) ? (
-                    <span className="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">
-                      Full
-                    </span>
+                    <span className="px-2 py-1 rounded-full text-xs bg-red-100 text-red-700">Full</span>
                   ) : (
-                    <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">
-                      Open
-                    </span>
+                    <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">Open</span>
                   )}
                 </td>
                 <td className="py-4">
                   <div className="flex items-center gap-3 text-gray-500">
-                    <button
-                      onClick={() => toggleRowVisibility(uniqueId)}
-                      className="hover:text-blue-500 transition"
-                    >
+                    <button onClick={() => toggleRowVisibility(uniqueId)} className="hover:text-blue-500 transition">
                       {hiddenRows[uniqueId] ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                     <button onClick={() => onEdit?.(item)} className="hover:text-yellow-500">

@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import axios from "axios";
+import { useSSE } from "../context/SSEProvider";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -21,13 +22,13 @@ export function useClasses() {
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [showFullOnly, setShowFullOnly] = useState(false);
+  const events = useSSE();
 
-  // Fetch classes from backend
+  // Fetch classes
   const fetchClasses = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API_BASE_URL}/api/classes`);
-      // Assuming your API returns { success: true, data: [...] }
       const classes = response.data.data || [];
       setClassList(classes);
     } catch (error) {
@@ -37,11 +38,41 @@ export function useClasses() {
     }
   }, []);
 
-  // Initial fetch
   useEffect(() => {
     fetchClasses();
   }, [fetchClasses]);
 
+  // SSE updates
+  useEffect(() => {
+    if (!events || events.length === 0) return;
+    const latest = events[events.length - 1];
+
+    const handleUpdate = () => {
+      switch (latest.type) {
+        case "class_create":
+          setClassList((prev) => [...prev, latest.data]);
+          break;
+        case "class_update":
+          setClassList((prev) =>
+            prev.map((cls) =>
+              cls._id === latest.data._id ? latest.data : cls,
+            ),
+          );
+          break;
+        case "class_delete":
+          setClassList((prev) =>
+            prev.filter((cls) => cls._id !== latest.data.id),
+          );
+          break;
+        default:
+          break;
+      }
+    };
+
+    handleUpdate();
+  }, [events]);
+
+  // Form helpers
   const resetForm = () => {
     setEditingId(null);
     setFormState({
@@ -63,17 +94,17 @@ export function useClasses() {
     setOpen(true);
   };
 
-  const openEditClass = (item) => {
-    setEditingId(item._id); // Use MongoDB _id
+  const openEditClass = (cls) => {
+    setEditingId(cls._id);
     setFormState({
-      name: item.name || "",
-      capacity: String(item.capacity || ""),
-      total: String(item.total || ""),
-      level: String(item.level || ""),
-      shift: item.shift || "",
-      teacher: item.teacher || "",
-      subject: item.subject || "",
-      room: item.room || "",
+      name: cls.name || "",
+      capacity: String(cls.capacity || ""),
+      total: String(cls.total || ""),
+      level: String(cls.level || ""),
+      shift: cls.shift || "",
+      teacher: cls.teacher || "",
+      subject: cls.subject || "",
+      room: cls.room || "",
     });
     setOpen(true);
   };
@@ -82,8 +113,8 @@ export function useClasses() {
     setFormState((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSaveClass = async (event) => {
-    event.preventDefault();
+  const handleSaveClass = async (e) => {
+    e.preventDefault();
 
     const capacity = Number(formState.capacity);
     const total = Number(formState.total);
@@ -101,7 +132,6 @@ export function useClasses() {
       return;
     }
 
-    // Client-side validation for level (matches backend max:12)
     if (level < 1 || level > 12) {
       alert("Level must be between 1 and 12");
       return;
@@ -129,7 +159,6 @@ export function useClasses() {
           withCredentials: true,
         });
       }
-      await fetchClasses();
       setOpen(false);
       resetForm();
     } catch (error) {
@@ -142,7 +171,6 @@ export function useClasses() {
     if (!confirm("Delete this class?")) return;
     try {
       await axios.delete(`${API_BASE_URL}/api/classes/${id}`);
-      await fetchClasses(); // Refresh after delete
       if (editingId === id) {
         resetForm();
         setOpen(false);
@@ -200,6 +228,6 @@ export function useClasses() {
     handleSaveClass,
     handleDeleteClass,
     resetForm,
-    refreshClasses: fetchClasses, // Provide refetch function
+    refreshClasses: fetchClasses,
   };
 }
