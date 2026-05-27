@@ -20,7 +20,7 @@ const AttendanceChart = () => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_BASE_URL}/attendance?type=${view}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/attendance?type=${view}`
         );
         if (Array.isArray(res.data) && res.data.length > 0) {
           setData(res.data);

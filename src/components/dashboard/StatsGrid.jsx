@@ -14,10 +14,22 @@ const StatsGrid = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/stats`)
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/stats`, {
+        withCredentials: true,
+      })
       .then((response) => {
-        if (response.data.length > 0) {
-          setStats(response.data[0]); // take the first stats document
+        // Handle both possible structures
+        let statsData = response.data;
+        if (statsData.data && Array.isArray(statsData.data)) {
+          statsData = statsData.data[0];
+        } else if (Array.isArray(statsData) && statsData.length > 0) {
+          statsData = statsData[0];
+        }
+
+        if (statsData && statsData.totalEmployees !== undefined) {
+          setStats(statsData);
+        } else {
+          console.warn("Unexpected stats response:", response.data);
         }
       })
       .catch((error) => {

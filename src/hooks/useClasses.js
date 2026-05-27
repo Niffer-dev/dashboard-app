@@ -26,7 +26,7 @@ export function useClasses() {
   const fetchClasses = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_BASE_URL}/classes`);
+      const response = await axios.get(`${API_BASE_URL}/api/classes`);
       // Assuming your API returns { success: true, data: [...] }
       const classes = response.data.data || [];
       setClassList(classes);
@@ -101,6 +101,12 @@ export function useClasses() {
       return;
     }
 
+    // Client-side validation for level (matches backend max:12)
+    if (level < 1 || level > 12) {
+      alert("Level must be between 1 and 12");
+      return;
+    }
+
     const payload = {
       name: formState.name,
       capacity,
@@ -115,11 +121,14 @@ export function useClasses() {
 
     try {
       if (isEditing) {
-        await axios.put(`${API_BASE_URL}/classes/${editingId}`, payload);
+        await axios.put(`${API_BASE_URL}/api/classes/${editingId}`, payload, {
+          withCredentials: true,
+        });
       } else {
-        await axios.post(`${API_BASE_URL}/classes`, payload);
+        await axios.post(`${API_BASE_URL}/api/classes`, payload, {
+          withCredentials: true,
+        });
       }
-      // Refresh the list after successful save
       await fetchClasses();
       setOpen(false);
       resetForm();
@@ -132,7 +141,7 @@ export function useClasses() {
   const handleDeleteClass = async (id) => {
     if (!confirm("Delete this class?")) return;
     try {
-      await axios.delete(`${API_BASE_URL}/classes/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/classes/${id}`);
       await fetchClasses(); // Refresh after delete
       if (editingId === id) {
         resetForm();
@@ -146,12 +155,14 @@ export function useClasses() {
 
   const filteredClasses = useMemo(() => {
     return classList.filter((item) => {
-      if (showFullOnly && Number(item.capacity) < Number(item.total)) return false;
+      if (showFullOnly && Number(item.capacity) < Number(item.total))
+        return false;
 
       if (!search) return true;
 
       const query = search.toLowerCase();
-      const text = `${item.name} ${item.teacher} ${item.shift} ${item.level}`.toLowerCase();
+      const text =
+        `${item.name} ${item.teacher} ${item.shift} ${item.level}`.toLowerCase();
 
       switch (filterType) {
         case "name":
