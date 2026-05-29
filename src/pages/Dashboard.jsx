@@ -1,6 +1,6 @@
 import React from 'react'
 import WelcomeHeader from "../components/dashboard/WelcomeHeader"
-import StatsGrid from '../components/Dashboard/StatsGrid'
+import StatsGrid from '../components/dashboard/StatsGrid'
 import AttendanceChart from '../components/dashboard/AttendanceChart'
 
 const Dashboard = () => {
