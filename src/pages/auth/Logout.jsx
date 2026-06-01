@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -22,9 +22,11 @@ const Logout = () => {
         console.error("Logout API error:", error);
         // Even if backend fails, clear frontend state
       } finally {
-        // Remove token from localStorage
+        // Remove token and user data from localStorage
         localStorage.removeItem("token");
-        // Dispatch custom event so App.jsx updates auth state
+        localStorage.removeItem("user");
+        // Dispatch custom event so UserContext and App.jsx update state
+        window.dispatchEvent(new Event("userChange"));
         window.dispatchEvent(new Event("authChange"));
         toast.success("Logged out successfully");
         // Redirect to login page

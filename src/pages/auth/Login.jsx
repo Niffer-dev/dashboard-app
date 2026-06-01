@@ -58,13 +58,9 @@ const Login = () => {
     const validationErrors = validate();
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-
-      toast.success("Login successful!");
-
-      setTimeout(()=>{
-        navigate("/", { replace: true });
-      }, 1500);
+    // Return early if there are validation errors
+    if (Object.keys(validationErrors).length > 0) {
+      return;
     }
 
     setIsLoading(true);
@@ -87,7 +83,18 @@ const Login = () => {
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
         }
-        // Dispatch custom event so App.jsx updates authentication state
+
+        // Store user data in localStorage, with fallback if server does not return user payload
+        const storedUser =
+          response.data.user ||
+          response.data.data ||
+          (response.data.user?.data ?? null) ||
+          { email: form.email };
+
+        localStorage.setItem("user", JSON.stringify(storedUser));
+
+        // Dispatch custom event so UserContext and App.jsx update state
+        window.dispatchEvent(new Event("userChange"));
         window.dispatchEvent(new Event("authChange"));
         toast.success("Login successful!");
         // Navigate to the dashboard (protected route)

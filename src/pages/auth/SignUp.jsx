@@ -2,9 +2,9 @@
 import { useState } from "react";
 import signupBg from "../../assets/signupUI.svg";
 import Input from "../../components/ui/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 const initialFormData = {
   username: "",
@@ -14,6 +14,7 @@ const initialFormData = {
 };
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
 
   // Handle input changes
@@ -33,17 +34,38 @@ const SignUp = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/auth/register`,
-
         formData,
         // { withCredentials: true },
       );
+ 
+      // Store user data in localStorage, falling back to the signup form if needed
+      const storedUser =
+        response.data.user ||
+        response.data.data ||
+        (response.data.user?.data ?? null) ||
+        {
+          username: formData.username || formData.email,
+          email: formData.email,
+        };
 
-      if (response.status !== 201) {
-        alert("Something went wrong!");
-      } else {
-        toast.success("User registered successfully");
-        setFormData(initialFormData); // reset form after success
+      localStorage.setItem("user", JSON.stringify(storedUser));
+
+      // Store token if provided
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
       }
+
+      // Dispatch custom events
+      window.dispatchEvent(new Event("authChange"));
+      window.dispatchEvent(new Event("userChange"));
+
+      toast.success("User registered successfully");
+      setFormData(initialFormData); // reset form after success
+
+      // Redirect to dashboard
+      setTimeout(() => {
+        navigate("/dashboard", { replace: true });
+      }, 1500);
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data?.message || "Registration failed");
@@ -62,11 +84,11 @@ const SignUp = () => {
       {/* Right side form */}
       <div className="bg-gray-50 h-full w-full p-5 lg:p-5 flex flex-col gap-5 items-start lg:justify-center">
         <div className="mb-5">
-          <h1 className="lg:text-3xl text-2xl font-bold">Create an Account</h1>
+          <h1 className="lg:text-3xl text-2xl font-bold text-gray-800">Create an Account</h1>
           <p className="text-sm text-gray-500">
             with{" "}
             <span className="text-purple-700 font-semibold">
-              Backend Project
+              Sasiffer 
             </span>
           </p>
         </div>
