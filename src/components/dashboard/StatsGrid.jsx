@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StatCard from "../ui/StatCard";
-import { useSSE } from "../context/SSEProvider"; // adjust path if needed
+import { useSSE } from "../../context/SSEProvider"; // adjust path if needed
 
 const initialStatData = {
   totalEmployees: 0,
