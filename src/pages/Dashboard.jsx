@@ -1,5 +1,5 @@
-// src/pages/Dashboard.jsx
 import React from "react";
+import WelcomeHeader from "../components/dashboard/WelcomeHeader";
 import StatsGrid from "../components/dashboard/StatsGrid";
 import AttendanceChart from "../components/dashboard/AttendanceChart";
 import StatsUpdateForm from "../components/forms/StatsUpdateForm";

@@ -126,6 +126,7 @@ import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import Logout from "./pages/auth/Logout";
 import { Toaster } from "react-hot-toast";
+import { UserProvider } from "./context/UserContext";
 
 // Hook to reactively track authentication status
 const useAuth = () => {
@@ -165,7 +166,7 @@ function App() {
   const { dark, toggle } = useDarkMode();
 
   return (
-    <>
+    <UserProvider>
       <Routes>
         {/* Protected routes */}
         <Route
@@ -195,7 +196,7 @@ function App() {
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
       <Toaster />
-    </>
+    </UserProvider>
   );
 }
 
