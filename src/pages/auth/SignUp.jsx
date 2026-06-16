@@ -2,9 +2,11 @@
 import { useState } from "react";
 import signupBg from "../../assets/signupUI.svg";
 import Input from "../../components/ui/Input";
+import DarkModeToggle from "../../components/ui/DarkModeToggle";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
+import { useDarkMode } from "../../hooks/useDarkMode";
 
 const initialFormData = {
   username: "",
@@ -16,6 +18,7 @@ const initialFormData = {
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
+  const { dark, toggle } = useDarkMode();
 
   // Handle input changes
   function handleChange(e) {
@@ -73,21 +76,24 @@ const SignUp = () => {
   }
 
   return (
-    <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md">
+    <div className="relative w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <div className="absolute top-4 right-4 z-20">
+        <DarkModeToggle darkMode={dark} onToggle={toggle} />
+      </div>
       {/* Left side image */}
-      <div className="bg-white">
+      <div className="bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="w-full h-fit lg:w-100 lg:h-100 flex items-center justify-center">
           <img src={signupBg} alt="Signup illustration" />
         </div>
       </div>
 
       {/* Right side form */}
-      <div className="bg-gray-50 h-full w-full p-5 lg:p-5 flex flex-col gap-5 items-start lg:justify-center">
+      <div className="bg-gray-50 dark:bg-gray-800 h-full w-full p-5 lg:p-5 flex flex-col gap-5 items-start lg:justify-center transition-colors duration-300">
         <div className="mb-5">
-          <h1 className="lg:text-3xl text-2xl font-bold text-gray-800">Create an Account</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="lg:text-3xl text-2xl font-bold text-gray-800 dark:text-white">Create an Account</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-300">
             with{" "}
-            <span className="text-purple-700 font-semibold">
+            <span className="text-purple-700 dark:text-purple-300 font-semibold">
               Sasiffer 
             </span>
           </p>
@@ -156,9 +162,9 @@ const SignUp = () => {
           </button>
         </form>
 
-        <small>
+        <small className="text-sm text-gray-600 dark:text-gray-300">
           I have an account?{" "}
-          <Link to={"/login"} className="text-red-500 hover:text-red-600">
+          <Link to={"/login"} className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300">
             Login
           </Link>
         </small>

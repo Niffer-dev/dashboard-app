@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import loginBg from "../../assets/loginUI.svg";
 import Input from "../../components/ui/Input";
+import DarkModeToggle from "../../components/ui/DarkModeToggle";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import axios from "axios";
+import { useDarkMode } from "../../hooks/useDarkMode";
 
 
 const Login = () => {
   const navigate = useNavigate();
+  const { dark, toggle } = useDarkMode();
 
   const [form, setForm] = useState({
     email: "",
@@ -124,7 +127,10 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div className="relative w-full lg:w-200 mx-auto mt-10 flex lg:flex-row flex-col  items-center lg:gap-10 h-screen lg:h-130 rounded-md overflow-hidden backdrop-blur-md bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <div className="absolute top-4 right-4 z-20">
+        <DarkModeToggle darkMode={dark} onToggle={toggle} />
+      </div>
       <div className="bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="w-full h-fit lg:w-100 lg:h-100 flex items-center justify-center"> 
           <img src={loginBg} alt="image" />
@@ -146,11 +152,11 @@ const Login = () => {
         <div className="flex w-full justify-between">
           <button
             type="button"
-            className="text-sm py-1 px-4 rounded-sm bg-purple-800 text-white"
+            className="text-sm py-1 px-4 rounded-sm border-2 border-purple-700 text-purple-700 cursor-pointer dark:text-purple-300 active:scale-95 transition"
           >
             I'm a teacher
           </button>
-          <button className="text-sm py-1 px-4 rounded-sm border-2 border-purple-700 text-purple-700 cursor-pointer dark:text-purple-300 active:scale-95 transition">
+          <button className="text-sm py-1 px-4 rounded-sm bg-purple-800 text-white cursor-pointer">
             I'm a student
           </button>
         </div>
