@@ -1,4 +1,3 @@
-// components/forms/StatsUpdateForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -48,34 +47,36 @@ const StatsUpdateForm = () => {
   };
 
   return (
-    <div className="bg-black p-4 rounded-xl shadow-sm mt-5">
+    <div className="bg-black p-4 sm:p-6 rounded-xl shadow-sm mt-5 h-full flex flex-col">
       <h3 className="font-semibold text-lg mb-3 text-white">Update Dashboard Stats</h3>
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <div className="grid grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Responsive grid: 1 col mobile, 2 cols tablet+ */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Total Employees</label>
+            <label className="block text-sm font-medium text-gray-200">Total Employees</label>
             <input type="number" name="totalEmployees" value={formData.totalEmployees} onChange={handleChange} className="mt-1 w-full border rounded-md p-2" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Job Applicants</label>
+            <label className="block text-sm font-medium text-gray-200">Job Applicants</label>
             <input type="number" name="jobApplicants" value={formData.jobApplicants} onChange={handleChange} className="mt-1 w-full border rounded-md p-2" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Revenue ($)</label>
+            <label className="block text-sm font-medium text-gray-200">Revenue ($)</label>
             <input type="number" name="revenue" value={formData.revenue} onChange={handleChange} className="mt-1 w-full border rounded-md p-2" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Attendance (%)</label>
+            <label className="block text-sm font-medium text-gray-200">Attendance (%)</label>
             <input type="number" name="attendance" value={formData.attendance} onChange={handleChange} step="0.01" className="mt-1 w-full border rounded-md p-2" required />
           </div>
         </div>
+
         <button
-  type="submit"
-  disabled={isSubmitting}
-  className="w-full mt-auto bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-blue-300"
->
-  {isSubmitting ? "Updating..." : "Update Stats"}
-</button>
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-blue-300"
+        >
+          {isSubmitting ? "Updating..." : "Update Stats"}
+        </button>
 
         {message && <p className="text-sm mt-2 text-green-600">{message}</p>}
       </form>
