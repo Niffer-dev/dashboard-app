@@ -1,4 +1,3 @@
-// FINAL VERSION
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StatCard from "../ui/StatCard";
@@ -63,7 +62,14 @@ const StatsGrid = () => {
   }, [events]);
 
   return (
-    <div className="grid grid-cols-2 gap-5 w-1/2">
+    <div
+      className="
+        grid 
+        grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 
+        gap-4 sm:gap-5 
+        w-full
+      "
+    >
       <StatCard title="Total Employees" value={stats.totalEmployees} />
       <StatCard title="Job Applicants" value={stats.jobApplicants} />
       <StatCard title="Revenue" value={`${stats.revenue}`} />

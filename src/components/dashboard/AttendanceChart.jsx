@@ -1,4 +1,3 @@
-// FINAL VERSION - SSE integrated with global context
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
@@ -48,18 +47,24 @@ const AttendanceChart = () => {
     const handleUpdate = () => {
       switch (latest.type) {
         case "attendance":
-          setData((prev) => [...prev, {
-            name: latest.data.day,
-            present: latest.data.present,
-            absent: latest.data.absent,
-          }]);
+          setData((prev) => [
+            ...prev,
+            {
+              name: latest.data.day,
+              present: latest.data.present,
+              absent: latest.data.absent,
+            },
+          ]);
           break;
         case "attendance_bulk":
-          setData((prev) => [...prev, ...latest.data.map((rec) => ({
-            name: rec.day,
-            present: rec.present,
-            absent: rec.absent,
-          }))]);
+          setData((prev) => [
+            ...prev,
+            ...latest.data.map((rec) => ({
+              name: rec.day,
+              present: rec.present,
+              absent: rec.absent,
+            })),
+          ]);
           break;
         case "attendance_update":
           setData((prev) =>
@@ -80,16 +85,26 @@ const AttendanceChart = () => {
   }, [events]);
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow-sm w-1/2">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="font-semibold">Attendance Report</h3>
-        <div className="flex gap-2 text-sm">
+    <div
+      className="bg-white rounded-xl shadow-sm 
+      w-full md:w-2/3 lg:w-full 
+      p-3 sm:p-4 md:p-6 
+      space-y-4"
+    >
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <h3 className="font-semibold text-sm sm:text-base md:text-lg">
+          Attendance Report
+        </h3>
+        <div className="flex gap-2 text-xs sm:text-sm md:text-base">
           {["daily", "weekly", "monthly"].map((type) => (
             <button
               key={type}
               onClick={() => setView(type)}
-              className={`px-3 py-1 rounded-md ${
-                view === type ? "bg-blue-500 text-white" : "text-gray-500"
+              className={`px-2 sm:px-3 py-1 rounded-md transition-colors ${
+                view === type
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -97,13 +112,27 @@ const AttendanceChart = () => {
           ))}
         </div>
       </div>
-      <div className="w-full h-64">
+
+      {/* Chart */}
+      <div className="w-full h-40 sm:h-56 md:h-72">
         <ResponsiveContainer>
           <LineChart data={data}>
             <XAxis dataKey="name" stroke="#9CA3AF" />
             <Tooltip />
-            <Line type="monotone" dataKey="present" stroke="#3B82F6" strokeWidth={3} dot={false} />
-            <Line type="monotone" dataKey="absent" stroke="#8B5CF6" strokeWidth={3} dot={false} />
+            <Line
+              type="monotone"
+              dataKey="present"
+              stroke="#3B82F6"
+              strokeWidth={3}
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="absent"
+              stroke="#8B5CF6"
+              strokeWidth={3}
+              dot={false}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
