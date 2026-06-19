@@ -32,4 +32,6 @@ export const SSEProvider = ({ children }) => {
   return <SSEContext.Provider value={events}>{children}</SSEContext.Provider>;
 };
 
-export const useSSE = () => useContext(SSEContext);
+export const useSSE = () => {
+  return useContext(SSEContext);
+};
